@@ -9,3 +9,7 @@ Este projeto consiste na criação de um sistema de banking usando Spring Boot. 
 3. Depositar Dinheiro: Realizar depósitos de dinheiro em uma carteira existente. Este serviço deve atualizar o saldo da carteira correspondente e registrar os dados na tabela de histórico de depósitos.
 4. Realizar Transferência: Permitir a transferência de fundos de uma carteira para outra. Deve verificar a disponibilidade de saldo suficiente antes de completar a transação.
 5. Consultar Extrato: Gerar e fornecer um extrato detalhado das transações realizadas em uma carteira, incluindo depósitos, transferências recebidas e enviadas, com data e hora.
+
+## Pré-requisitos
+
+Você precisa ter as aplicações CLI **docker** e **docker compose** (ou **docker-compose**) disponíveis no seu `PATH`. A versão mínima suportada do **Docker Compose é a 2.2.0**.
