@@ -1,0 +1,19 @@
+meta {
+  name: Create Wallet
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/wallets
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "cpf": "123",
+    "email": "teste@email.com",
+    "name": "john"
+  }
+}

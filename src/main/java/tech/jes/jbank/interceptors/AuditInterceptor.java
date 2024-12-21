@@ -18,8 +18,6 @@ public class AuditInterceptor implements HandlerInterceptor {
                              HttpServletResponse response,
                              Object handler) throws Exception {
 
-        logger.info("pre-handle");
-
         return true;
     }
 
@@ -29,7 +27,6 @@ public class AuditInterceptor implements HandlerInterceptor {
                            Object handler,
                            ModelAndView modelAndView) throws Exception {
 
-        logger.info("post-handle");
     }
 
     @Override
