@@ -1,5 +1,6 @@
 package tech.jes.jbank.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createWallet(@RequestBody CreateWalletDto dto) {
+    public ResponseEntity<Void> createWallet(@RequestBody @Valid CreateWalletDto dto) {
 
         var wallet = walletService.createWallet(dto);
 

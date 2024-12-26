@@ -1,6 +1,10 @@
 package tech.jes.jbank.controller.dto;
 
-public record CreateWalletDto(String cpf,
-                              String email,
-                              String name) {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
+
+public record CreateWalletDto(@CPF @NotBlank String cpf,
+                              @Email @NotBlank String email,
+                              @NotBlank String name) {
 }
