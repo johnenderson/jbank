@@ -1,0 +1,19 @@
+meta {
+  name: Deposit Money
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/wallets
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "cpf": "312.833.280-03",
+    "email": "john@teste.com.br",
+    "name": "john"
+  }
+}

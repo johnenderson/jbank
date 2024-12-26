@@ -1,13 +1,20 @@
 package tech.jes.jbank.service;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tech.jes.jbank.controller.dto.CreateWalletDto;
+import tech.jes.jbank.controller.dto.DepositMoneyDto;
+import tech.jes.jbank.entities.Deposit;
 import tech.jes.jbank.entities.Wallet;
 import tech.jes.jbank.exception.DeleteWalletException;
 import tech.jes.jbank.exception.WalletDataAlreadyExistsException;
+import tech.jes.jbank.exception.WalletNotFoundException;
+import tech.jes.jbank.repository.DepositRepository;
 import tech.jes.jbank.repository.WalletRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,9 +22,12 @@ import java.util.UUID;
 public class WalletService {
 
     private final WalletRepository walletRepository;
+    private final DepositRepository depositRepository;
 
-    public WalletService(WalletRepository walletRepository) {
+    public WalletService(WalletRepository walletRepository,
+                         DepositRepository depositRepository) {
         this.walletRepository = walletRepository;
+        this.depositRepository = depositRepository;
     }
 
     public Wallet createWallet(CreateWalletDto dto) {
@@ -53,5 +63,25 @@ public class WalletService {
         }
 
         return wallet.isPresent();
+    }
+
+    @Transactional
+    public void depositMoney(UUID walletId, @Valid DepositMoneyDto dto, String ipAddress) {
+
+        var wallet = walletRepository.findById(walletId)
+                .orElseThrow(() -> new WalletNotFoundException("there is no wallet with this id"));
+
+
+        var deposit = new Deposit();
+        deposit.setWallet(wallet);
+        deposit.setDepositValue(dto.value());
+        deposit.setDepositDatetime(LocalDateTime.now());
+        deposit.setIpAddress(ipAddress);
+
+        depositRepository.save(deposit);
+
+        wallet.setBalance(wallet.getBalance().add(dto.value()));
+
+        walletRepository.save(wallet);
     }
 }
