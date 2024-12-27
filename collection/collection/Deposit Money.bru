@@ -5,15 +5,17 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/wallets
+  url: http://localhost:8080/wallets/:id/deposits
   body: json
   auth: none
 }
 
+params:path {
+  id: 65bc7b73-c443-4b60-a345-53d47b4134a2
+}
+
 body:json {
   {
-    "cpf": "312.833.280-03",
-    "email": "john@teste.com.br",
-    "name": "john"
+    "value": "50.00"
   }
 }

@@ -1,0 +1,19 @@
+meta {
+  name: Transfer Money
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8080/transfers
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "sender": "8e470dae-fab6-4444-a39b-cabb9abeff680",
+    "receiver": "58f89b02-1e87-4c96-9ff8-33d7db4ef2bc",
+    "value": 0
+  }
+}
