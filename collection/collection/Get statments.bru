@@ -1,0 +1,23 @@
+meta {
+  name: Get statments
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8080/wallets/:id/statements
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 58f89b02-1e87-4c96-9ff8-33d7db4ef2bc
+}
+
+body:json {
+  {
+    "sender": "8e470dae-fab6-4444-a39b-cabb9abeff68",
+    "receiver": "58f89b02-1e87-4c96-9ff8-33d7db4ef2bc",
+    "value": 5999
+  }
+}
